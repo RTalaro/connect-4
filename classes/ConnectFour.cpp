@@ -45,7 +45,7 @@ bool ConnectFour::actionForEmptyHolder(BitHolder &holder)
         holder.setBit(bit);
         endTurn();
         return true;
-    }   
+    }
     return false;
 }
 
@@ -95,7 +95,7 @@ std::string ConnectFour::stateString()
     _grid->forEachSquare([&](ChessSquare* square, int x, int y) {
         Bit *bit = square->bit();
         if (bit) {
-            s[y * 6 + x] = std::to_string(bit->getOwner()->playerNumber()+1)[0];
+            s[y * 7 + x] = std::to_string(bit->getOwner()->playerNumber()+1)[0];
         }
     });
     return s;
@@ -105,7 +105,7 @@ std::string ConnectFour::stateString()
 void ConnectFour::setStateString(const std::string &s)
 {
     _grid->forEachSquare([&](ChessSquare* square, int x, int y) {
-        int index = y*6 + x;
+        int index = y * 7 + x;
         int playerNumber = s[index] - '0';
         if (playerNumber) {
             square->setBit( PieceForPlayer(playerNumber-1) );
